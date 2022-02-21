@@ -38,13 +38,14 @@ router.post('/', (req, res) => {
             this.body = body;
         };
 
-        login() {
+        register() {
             const client = this.body;
 
             try {
-                const user = dao.insert()
-            } catch {
-                
+                const response = dao.insert(client);
+                return response;
+            } catch(err) {
+                return { success: false, err };
             }
         }
     }
@@ -61,7 +62,24 @@ router.post('/', (req, res) => {
 //     // console.log(this.body);
 //     // console.log(req.body);
 //     // User.create()
+const user = new User2(req.body);
+const response = await user.register(); // User.js의 register 함수
+
+// log의 두 번째 파라미터를 변수로 빼줬음
+const url = { // object /register
+    method: "POST",
+    path: "/register",
+    status: response.err ? 409 : 201
+    // register는 정상응답 반응으로 201 반환해야함
+    // 데이터가 생성되는 것이기 때문에
+    // 여기 에러는 데이터베이스 에러이므로 서버측 에러이기 때문에 400(클라이언트측 에러)이 아니라 500번대를 반환해주는게 맞음
+    // 409는 클라이언트가 회원가입 할 때 아이디가 이미 있는 아이디인 경우 데이터베이스와 충돌하므로 그 때 발생시키는 에러코드임
+};
+
+log(response, url);
+return res.status(url.status).json(response);
 })
+
 const dao = {
     // 등록
     insert(params) {
@@ -77,5 +95,6 @@ const dao = {
       });
     }
 }
+//
 
 module.exports = router;
