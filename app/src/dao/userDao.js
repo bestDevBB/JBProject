@@ -19,13 +19,14 @@ const dao = {
                 reject(err);
             });
         });
-    }
+    },
 
-    // insertUser() {
-    //     return new Promise((resolve, reject) => {
-    //         User.
-    //     })
-    // }
+    // insert
+    insertUser(params) {
+        return new Promise((resolve, reject) => {
+            User.create()
+        })
+    }
 };
 
 module.exports = dao;

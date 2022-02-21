@@ -13,6 +13,7 @@ class User {
 
         try {
             const user = await dao.selectUser(client.user_id); // userDao.js
+            // 클라이언트에서 입력한 아이디의 정보를 user에 가져옴
             console.log(user);
 
             if(user) {
@@ -29,7 +30,7 @@ class User {
 
     async register() {
         const client = this.body;
-    }
+    };
 };
 
 module.exports = User;

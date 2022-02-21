@@ -3,8 +3,6 @@
 클라이언트가 데이터를 보내서 요청을 하는 부분 */
 "use strict";
 
-// const axios = require("axios");
-
 const userId = document.getElementById("user_id"),
     password = document.getElementById("password"),
     loginBtn = document.getElementById("button");
@@ -19,27 +17,7 @@ function login() {
         user_id: userId.value,
         password: password.value
     };
-    
-    // axios.post('/login', {
-    //     headers: {
-    //         "Content-Type": "application/json" // 내가 보내는 데이터의 타입
-    //     },
-    //     data: {
-    //         user_id: req.user_id,
-    //         password: req.password
-    //     }
-    // })
-    // axios({
-    //     method: 'post',
-    //     url: '/login',
-    //     data: {
-    //         user_id: req.user_id,
-    //         password: req.password
-    //     },
-    //     headers: {
-    //         "Content-Type": "application/json" // 내가 보내는 데이터의 타입
-    //     }
-    // })
+
     fetch("/login", { // 로그인을 요청하는 fetch, 서버에 전달
         method: "POST",
         headers: {

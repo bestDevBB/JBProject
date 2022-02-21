@@ -1,6 +1,6 @@
 "use strict";
 
-const id = document.getElementById("id"),
+const userId = document.getElementById("user_id"),
     name = document.getElementById("name"),
     password = document.getElementById("password"),
     confirmPassword = document.getElementById("confirm-password"),
@@ -9,13 +9,13 @@ const id = document.getElementById("id"),
 registerBtn.addEventListener('click', register);
 
 function register() {
-    if(!id.value) return alert("아이디를 입력해주세요.");
+    if(!userId.value) return alert("아이디를 입력해주세요.");
     if(!name.value) return alert("이름을 입력해주세요.");
     if(!password.value) return alert("비밀번호를 입력해주세요.");
     if(!confirmPassword.value) return alert("비밀번호를 확인해주세요.");
 
     const req = {
-        id: id.value,
+        user_id: userId.value,
         name: name.value,
         password: password.value
     };
