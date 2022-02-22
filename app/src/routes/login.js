@@ -19,8 +19,6 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     const user = new User(req.body); // userService.js import
     const response = await user.login();
-    console.log(`${user} 이거지`);
-    console.log(`${response} 이거라공`)
 
     const url = {
         method: "POST",
