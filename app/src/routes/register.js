@@ -49,9 +49,10 @@ router.post('/', (req, res) => {
             }
         }
     }
-    const client = new User2(req.body);
-    console.log(client);
-    console.log(req.body);
+
+    // const client = new User2(req.body);
+    // console.log(client);
+    // console.log(req.body);
 //     // const client = req.body;
 //     // console.log(client);
 //     // class User {
@@ -63,7 +64,7 @@ router.post('/', (req, res) => {
 //     // console.log(req.body);
 //     // User.create()
 const user = new User2(req.body);
-const response = await user.register(); // User.js의 register 함수
+const response = user.register(); // User.js의 register 함수
 
 // log의 두 번째 파라미터를 변수로 빼줬음
 const url = { // object /register
