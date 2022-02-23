@@ -16,17 +16,20 @@ module.exports = class User extends Sequelize.Model {
             name: {
                 type: Sequelize.STRING(20)
             },
-            gender: {
-                type: Sequelize.STRING(1)
+            email: {
+                type: Sequelize.STRING(30)
             },
             phoneNumber: {
                 type: Sequelize.STRING(15)
             },
-            email: {
+            birth: {
+                type: Sequelize.STRING(10)
+            },
+            address1: {
                 type: Sequelize.STRING(30)
             },
-            address: {
-                type: Sequelize.STRING(150)
+            address2: {
+                type: Sequelize.STRING(50)
             }
         }, {
             sequelize, // Database Connection

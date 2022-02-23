@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 const { User } = require('../models/index.js');
 
 const dao = {
-    // 로그인(for User lookup)
+    
     // selectUser(params) {
     //     return new Promise((resolve, reject) => {
     //         User.findOne({
@@ -20,6 +20,8 @@ const dao = {
     //         });
     //     });
     // },
+
+    // 로그인(for User lookup)
     async selectUser(params) {
       try {
         return await User.findOne({
@@ -32,6 +34,17 @@ const dao = {
       };
     },
 
+    // select
+    async selectUserAll(params) {
+      try {
+        return await User.findAll({
+
+        })
+      } catch(err) {
+
+      }
+    },
+
     // insert
     async insertUser(params) {
       try {
@@ -41,17 +54,6 @@ const dao = {
         return err;
       }
     }
-
-    // async insertUser(params) {
-    //     await User.create(params)
-    //     .then((result) => {
-    //       console.log(result);
-    //       return result;
-    //     })
-    //     .catch((err) => {
-    //         console.error(err);
-    //     })
-    // }
 };
 
 module.exports = dao;
