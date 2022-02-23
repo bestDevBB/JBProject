@@ -6,32 +6,32 @@ module.exports = class Car extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        car_No: {
+        carNum: {
           type: Sequelize.STRING(9),
           allowNull: false,
           primaryKey: true,
         },
-        price: {
+        carPrice: {
           type: Sequelize.STRING(7),
           allowNull: false,
         },
-        brand: {
+        carBrand: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
-        preference: {
+        carPreference: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
-        grade: {
+        carGrade: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
-        fuel: {
+        carFuel: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
-        car_img: {
+        carImg: {
           type: Sequelize.STRING(100),
           allowNull: true,
         },

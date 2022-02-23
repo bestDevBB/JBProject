@@ -4,23 +4,6 @@ const { Op } = require('sequelize');
 const { User } = require('../models/index.js');
 
 const dao = {
-    
-    // selectUser(params) {
-    //     return new Promise((resolve, reject) => {
-    //         User.findOne({
-    //             attributes: ['user_id', 'password'],
-    //             where: { user_id: params },
-    //             raw: true // dataValues의 정보만 리턴
-    //         })
-    //         .then((selectedOne) => {
-    //             resolve(selectedOne);
-    //         })
-    //         .catch((err) => {
-    //             reject(err);
-    //         });
-    //     });
-    // },
-
     // 로그인(for User lookup)
     async selectUser(params) {
       try {
@@ -35,13 +18,11 @@ const dao = {
     },
 
     // select
-    async selectUserAll(params) {
+    async selectUserAll() {
       try {
-        return await User.findAll({
-
-        })
+        return await User.findAll()
       } catch(err) {
-
+        return err;
       }
     },
 
@@ -57,3 +38,21 @@ const dao = {
 };
 
 module.exports = dao;
+
+
+
+    // selectUser(params) {
+    //     return new Promise((resolve, reject) => {
+    //         User.findOne({
+    //             attributes: ['user_id', 'password'],
+    //             where: { user_id: params },
+    //             raw: true // dataValues의 정보만 리턴
+    //         })
+    //         .then((selectedOne) => {
+    //             resolve(selectedOne);
+    //         })
+    //         .catch((err) => {
+    //             reject(err);
+    //         });
+    //     });
+    // },
