@@ -5,16 +5,31 @@ const { User } = require('../models/index.js');
 
 const dao = {
     // 로그인(for User lookup)
-    async selectUser(params) {
-      try {
-        return await User.findOne({
-          attributes: ['user_id', 'password'],
-          where: { user_id: params },
-          raw: true
-        })
-      } catch(err) {
-        return err;
-      };
+    // async selectUser(params) {
+    //   try {
+    //     return await User.findOne({
+    //       attributes: ['user_id', 'userPw'],
+    //       where: { user_id: params },
+    //       raw: true
+    //     });
+    //   } catch(err) {
+    //     return err;
+    //   };
+    // },
+
+    selectUser(params) {
+      return new Promise((resolve, reject) => {
+        User.findOne({
+          attributes: ['userId', 'userPw'],
+          where: { userId: params },
+          raw: true,
+        }).then((result) => {
+          console.log(result);
+          resolve(result);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
     },
 
     // select
@@ -34,25 +49,18 @@ const dao = {
       } catch(err) {
         return err;
       }
+    },
+
+    // update
+    updateUser(params) {
+      User.update(params)
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        console.error(err);
+      })
     }
 };
 
 module.exports = dao;
-
-
-
-    // selectUser(params) {
-    //     return new Promise((resolve, reject) => {
-    //         User.findOne({
-    //             attributes: ['user_id', 'password'],
-    //             where: { user_id: params },
-    //             raw: true // dataValues의 정보만 리턴
-    //         })
-    //         .then((selectedOne) => {
-    //             resolve(selectedOne);
-    //         })
-    //         .catch((err) => {
-    //             reject(err);
-    //         });
-    //     });
-    // },

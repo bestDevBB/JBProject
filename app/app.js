@@ -1,13 +1,19 @@
 "use strict";
 
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const session = require('session');
 const dotenv = require('dotenv');
+const passport = require('passport');
 
+
+dotenv.config();
 const { sequelize } = require('./src/models/index.js');
+const passportConfig = require('./src/passport/index.js');
 
 const app = express();
-dotenv.config();
+passportConfig(); // 패스포트 설정
 
 const router = require('./src/routes/index.js');
 const logger = require('./src/config/logger.js');
@@ -33,6 +39,18 @@ app.set("views engine", "ejs");
 app.use(express.static(`${__dirname}/src/public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        httpOnly: true,
+        secure: false
+    }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', router);
 // app.use('/', router);

@@ -1,4 +1,4 @@
-/* 프론트에서 입력한 값과 일치하는지 판단 */
+// 유저
 "use strict";
 
 const dao = require('../dao/userDao.js');
@@ -8,16 +8,17 @@ class User {
         this.body = body;
     };
 
+    // 로그인
     async login() {
         const client = this.body;
 
         try {
-            const user = await dao.selectUser(client.user_id); // userDao.js
+            const user = await dao.selectUser(client.userId); // userDao.js
             // 클라이언트에서 입력한 아이디의 정보를 user에 가져옴
             console.log(user);
 
             if(user) {
-                if(user.user_id === client.user_id && user.password === client.password) {
+                if(user.userId === client.userId && user.userPw === client.userPw) {
                     return { success: true };
                 };
                 return { success: false, msg: "비밀번호가 틀렸습니다." };
@@ -28,6 +29,7 @@ class User {
         };
     };
 
+    // 회원가입
     async register() {
         const client = this.body;
 
@@ -39,6 +41,8 @@ class User {
             return { success: false, err };
         };
     };
+
+    // 회원정보 수정
 };
 
 module.exports = User;

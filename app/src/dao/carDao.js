@@ -5,11 +5,15 @@ const { Car } = require('../models/index.js');
 
 const dao = {
 // select - 체크박스에 체크한 조건에 맞는 차 목록
+//★★ 이 코드 확실치 않음!!!
   async selectCarCheckbox(params) {
     try {
       return await Car.findAll({
         where: {
-          [Op.and]: [{ carGrade: params }, { carFuel: params }]
+          [Op.and]: {
+            [Op.in]:[{ carGrade: params }],
+            [Op.in]:[{ carFuel: params }]
+          }
         }
       })
     } catch(err) {
