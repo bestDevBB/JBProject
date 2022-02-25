@@ -33,8 +33,8 @@ module.exports = class User extends Sequelize.Model {
             }
         }, {
             sequelize, // Database Connection
-            // underscored: true, // true: underscored, false: camelCase
-            underscored: false, // true: underscored, false: camelCase
+            underscored: true, // true: underscored, false: camelCase
+            // underscored: false, // true: underscored, false: camelCase
             timestamp: true, // createAt, updatedAt
             paranoid: true // deletedAt
         });
