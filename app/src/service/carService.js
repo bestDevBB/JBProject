@@ -13,18 +13,37 @@ class Car {
 
         try {
             const car = await dao.selectCarCheckBox(selCheck.carGrade);
-            console.log(car);
+            console.log('car Service:', car);
 
             if(car) {
-                if(car.carGrade === selCheck.carGrade && car.carFuel === selCheck.carFuel) {
+                if(car.carGrade === selCheck.carGrade) {
                     return { success: true };
-                }
-            return { success: true };
+                };
+                return { success: false };
             }
+            return { success: false };
         } catch(err) {
             return { success: false, err };
-        }
+        };
     };
+    // async selectCheckBox() {
+    //     const selCheck = this.body;
+
+    //     try {
+    //         const car = await dao.selectCarCheckBox(selCheck);
+    //         console.log('car Service:', car);
+
+    //         if(car) {
+    //             if(car.carGrade === selCheck.carGrade && car.carFuel === selCheck.carFuel) {
+    //                 return { success: true };
+    //             };
+    //             return { success: false };
+    //         };
+    //         return { success: false };
+    //     } catch(err) {
+    //         return { success: false, err };
+    //     };
+    // };
 };
 
 module.exports = Car;

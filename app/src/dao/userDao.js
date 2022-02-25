@@ -70,7 +70,7 @@ const dao = {
       }).then((result) => {
         resolve( { resultCount: result });
       }).catch((err) => {
-        reject(err);
+        reject()
       })
     }
 };
