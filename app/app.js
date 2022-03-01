@@ -3,6 +3,8 @@
 const express = require('express');
 // const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+// const cors = require('cors');
+// const corsConfig = require('./src/config/corsConfig.json');
 // const session = require('session');
 const dotenv = require('dotenv');
 // const passport = require('passport');
@@ -37,9 +39,11 @@ app.set("views engine", "ejs");
 
 // middleware
 app.use(express.static(`${__dirname}/src/public`));
+// app.use(cors(corsConfig));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cookieParser());
+
 // app.use(session({
 //     resave: false,
 //     saveUninitialized: false,
